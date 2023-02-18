@@ -1,7 +1,7 @@
 import { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useFBO } from '@react-three/drei';
-import FBOParticles from './components/earth/index';
+
 import Sphere from './components/sphere/Sphere';
 import './App.css';
 
