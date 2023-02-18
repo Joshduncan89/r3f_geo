@@ -4,13 +4,12 @@ import {
   Grid,
   OrbitControls,
   PerspectiveCamera,
-  shaderMaterial,
+  Stars,
   useHelper,
 } from '@react-three/drei';
 import { useControls, folder } from 'leva';
 import vertex from './vertex';
 import fragmentShader from './fragment';
-import { DoubleSide } from 'three';
 
 const Sphere = () => {
   const meshRef = useRef();
@@ -35,7 +34,7 @@ const Sphere = () => {
       complex: 0.0,
       waves: 10.0,
       eqcolor: 11.0,
-      fragment: true,
+      fragment: false,
       redhell: true,
     },
     rgb: {
@@ -100,13 +99,13 @@ const Sphere = () => {
   });
 
   useFrame((state) => {
-    uniforms.current.time.value = state.clock.elapsedTime / 5;
+    uniforms.current.time.value = state.clock.elapsedTime / 12;
     meshRef.current.rotation.y += 0.001;
   });
 
-  useEffect(() => {
-    console.log(matRef.current.uniforms);
-  }, [matRef]);
+  // useEffect(() => {
+  //   console.log(matRef.current.uniforms);
+  // }, [matRef]);
 
   const uniforms = useRef({
     time: {
@@ -115,7 +114,7 @@ const Sphere = () => {
     },
     pointscale: {
       type: 'f',
-      value: 1.0,
+      value: 3.0,
     },
     decay: {
       type: 'f',
@@ -123,7 +122,7 @@ const Sphere = () => {
     },
     complex: {
       type: 'f',
-      value: 3.0,
+      value: 1.0,
     },
     waves: {
       type: 'f',
@@ -139,11 +138,11 @@ const Sphere = () => {
     },
     dnoise: {
       type: 'f',
-      value: 0.0,
+      value: 1.0,
     },
     qnoise: {
       type: 'f',
-      value: 4.0,
+      value: 2.0,
     },
     r_color: {
       type: 'f',
@@ -167,7 +166,7 @@ const Sphere = () => {
       {/* <Grid sectionSize={10} /> */}
 
       <mesh ref={meshRef}>
-        <icosahedronGeometry DoubleSide args={[1, 6]} />
+        <icosahedronGeometry args={[1, 62]} />
         <shaderMaterial
           ref={matRef}
           fragmentShader={fragmentShader}
@@ -175,6 +174,15 @@ const Sphere = () => {
           uniforms={uniforms.current}
         />
       </mesh>
+      {/* <mesh ref={meshRef}>
+        <icosahedronGeometry args={[1, 6]} />
+        <shaderMaterial
+          ref={matRef}
+          fragmentShader={fragmentShader}
+          vertexShader={vertex}
+          uniforms={uniforms.current}
+        />
+      </mesh> */}
     </>
   );
 };
