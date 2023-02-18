@@ -27,77 +27,77 @@ const Sphere = () => {
   // mat.uniforms['b_color'].value = options.rgb.b_colorf;
   // mat.uniforms['fragment'].value = options.perlin.fragment;
 
-  // var options = {
-  //   perlin: {
-  //     vel: 0.002,
-  //     perlins: 1.0,
-  //     decay: 0.4,
-  //     complex: 0.0,
-  //     waves: 10.0,
-  //     eqcolor: 11.0,
-  //     fragment: false,
-  //     redhell: true,
-  //   },
-  //   rgb: {
-  //     r_color: 6.0,
-  //     g_color: 0.0,
-  //     b_color: 0.2,
-  //   },
-  //   cam: {
-  //     zoom: 10,
-  //   },
-  // };
+  const options = {
+    perlin: {
+      vel: 0.002,
+      perlins: 1.0,
+      decay: 0.4,
+      complex: 0.0,
+      waves: 10.0,
+      eqcolor: 11.0,
+      fragment: true,
+      redhell: true,
+    },
+    rgb: {
+      r_color: 6.0,
+      g_color: 0.0,
+      b_color: 0.2,
+    },
+    cam: {
+      zoom: 10,
+    },
+  };
 
-  // useControls('sphere', {
-  //   eqcolor: {
-  //     value: options.perlin.eqcolor,
-  //     min: 3.0,
-  //     max: 50.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.eqcolor.value = v;
-  //     },
-  //   },
-  //   red: {
-  //     value: options.rgb.r_color,
-  //     min: 0.0,
-  //     max: 10.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.r_color.value = v;
-  //     },
-  //   },
-  //   green: {
-  //     value: options.rgb.g_color,
-  //     min: 0.0,
-  //     max: 10.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.g_color.value = v;
-  //     },
-  //   },
-  //   blue: {
-  //     value: options.rgb.b_color,
-  //     min: 0.0,
-  //     max: 10.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.b_color.value = v;
-  //     },
-  //   },
-  //   decay: {
-  //     value: options.perlin.decay,
-  //     min: 0.0,
-  //     max: 1.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.decay.value = v;
-  //     },
-  //   },
-  //   waves: {
-  //     value: options.perlin.waves,
-  //     min: 0.0,
-  //     max: 10.0,
-  //     onChange: (v) => {
-  //       matRef.current.uniforms.b_color.value = v;
-  //     },
-  //   },
-  // });
+  useControls('sphere', {
+    eqcolor: {
+      value: options.perlin.eqcolor,
+      min: 3.0,
+      max: 50.0,
+      onChange: (v) => {
+        matRef.current.uniforms.eqcolor.value = v;
+      },
+    },
+    red: {
+      value: options.rgb.r_color,
+      min: 0.0,
+      max: 10.0,
+      onChange: (v) => {
+        matRef.current.uniforms.r_color.value = v;
+      },
+    },
+    green: {
+      value: options.rgb.g_color,
+      min: 0.0,
+      max: 10.0,
+      onChange: (v) => {
+        matRef.current.uniforms.g_color.value = v;
+      },
+    },
+    blue: {
+      value: options.rgb.b_color,
+      min: 0.0,
+      max: 10.0,
+      onChange: (v) => {
+        matRef.current.uniforms.b_color.value = v;
+      },
+    },
+    decay: {
+      value: options.perlin.decay,
+      min: 0.0,
+      max: 1.0,
+      onChange: (v) => {
+        matRef.current.uniforms.decay.value = v;
+      },
+    },
+    waves: {
+      value: options.perlin.waves,
+      min: 0.0,
+      max: 10.0,
+      onChange: (v) => {
+        matRef.current.uniforms.waves.value = v;
+      },
+    },
+  });
 
   useFrame((state) => {
     uniforms.current.time.value = state.clock.elapsedTime / 5;
@@ -123,11 +123,11 @@ const Sphere = () => {
     },
     complex: {
       type: 'f',
-      value: 2.0,
+      value: 3.0,
     },
     waves: {
       type: 'f',
-      value: 1.6,
+      value: 3.0,
     },
     eqcolor: {
       type: 'f',
@@ -170,7 +170,6 @@ const Sphere = () => {
         <icosahedronGeometry args={[1, 6]} />
         <shaderMaterial
           ref={matRef}
-          depthWrite={false}
           fragmentShader={fragmentShader}
           vertexShader={vertex}
           uniforms={uniforms.current}
