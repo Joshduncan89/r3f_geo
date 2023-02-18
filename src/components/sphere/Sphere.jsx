@@ -162,7 +162,7 @@ const Sphere = () => {
   return (
     <>
       <PerspectiveCamera makeDefault fov={35} position={[0, 0, 20]} />
-      <hemisphereLight args={[0xffffff, 0x000000, 1.5]} />
+      <hemisphereLight args={[0xffffff, 0x000000, 0.2]} />
       <OrbitControls panSpeed={2} zoomSpeed={2} />
       {/* <Grid sectionSize={10} /> */}
 
