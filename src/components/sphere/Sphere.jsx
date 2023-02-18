@@ -161,13 +161,13 @@ const Sphere = () => {
 
   return (
     <>
-      <PerspectiveCamera makeDefault fov={35} position={[0, 0, 20]} />
+      <PerspectiveCamera makeDefault fov={35} position={[0, 0, 10]} />
       <hemisphereLight args={[0xffffff, 0x000000, 0.2]} />
       <OrbitControls panSpeed={2} zoomSpeed={2} />
       {/* <Grid sectionSize={10} /> */}
 
       <mesh ref={meshRef}>
-        <icosahedronGeometry args={[1, 6]} />
+        <icosahedronGeometry DoubleSide args={[1, 6]} />
         <shaderMaterial
           ref={matRef}
           fragmentShader={fragmentShader}
